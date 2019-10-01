@@ -36,7 +36,7 @@ if (command === "concert-this") {
     var song = process.argv[3];
 
     if (song === undefined) {
-        song = "The Sign";
+        song = "ace of base the sign";
     }
 
     spotify.search({
