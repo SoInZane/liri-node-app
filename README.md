@@ -28,7 +28,7 @@
 
  **$ node liri.js movie-this "movie name here"**
  * This will search the OMDB API for a movie you specify and render the following information about the movie:
-   * Titel of the movie
+   * Title of the movie
    * Year the movie came out
    * IMDB Rating
    * Rotten Tomatoes Rating
@@ -37,7 +37,7 @@
    * Plot of the movie
    * Actors in the movie
 
- Note: If no movie is specified in the command the results return the movie "Mr. Nobody"
+ Note: If no movie is specified in the command the results return the movie "Mr. Nobody".
 
  **$ node liri.js spotify-this-song *"song name here"***
  * This will search the Spotify API for a song you specify and render the following information about the artist:

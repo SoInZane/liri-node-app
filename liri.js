@@ -93,9 +93,9 @@ if (command === "concert-this") {
             return console.log(error);
         }
 
-        console.log(data);
+        // console.log(data);
         var dataArr = data.split(",");
-        console.log(dataArr);
+        // console.log(dataArr);
 
         command = dataArr[0];
         whatToCommand = dataArr[1];
