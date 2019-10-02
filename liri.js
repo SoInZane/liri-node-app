@@ -46,9 +46,10 @@ if (command === "concert-this") {
         if (err) {
             return console.log("Error occured: " + err);
         }
+        // first console log that is commented out is to retrieve the object info
         // console.log(data.tracks.items[0]);
         console.log("-------------------------------------");
-        console.log("Artist: " + data.tracks.items[0].artists.name);
+        console.log("Artist: " + data.tracks.items[0].artists[0].name);
         console.log("Song Name: " + data.tracks.items[0].name);
         console.log("Preview Link: " + data.tracks.items[0].preview_url);
         console.log("Album: " + data.tracks.items[0].album.name);
