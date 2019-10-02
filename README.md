@@ -1,7 +1,7 @@
 # LIRI Bot
  LIRI is a *Language Interpretation* and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
 
-![Bot Image](/images/bot.png)
+![Bot Image](./images/bot.png)
 
  ## NPM Dependencies
  * Axios
