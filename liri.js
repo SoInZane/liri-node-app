@@ -134,10 +134,10 @@ if (command === "concert-this") {
                 console.log(data.tracks.items[0].album[0]);
                 console.log("-------------------------------------");
                 console.log("Command: ", command, ", Song Name: ", song);
-                console.log("Artist: " + data);
-                console.log("Song Name: " + data);
-                console.log("Preview Link: " + data);
-                console.log("Album: " + data);
+                console.log("Artist: " + data.tracks.items[0].artists[0].name);
+                console.log("Song Name: " + data.tracks.items[0].name);
+                console.log("Preview Link: " + data.tracks.items[0].preview_url);
+                console.log("Album: " + data.tracks.items[0].album.name);
                 console.log("-------------------------------------");
             });
 
