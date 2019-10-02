@@ -21,7 +21,7 @@
  ### LIRI will take in the following commands
 
  **$ node liri.js concert-this *"artist/band name here"***
- * This will search the Bands in Town Artist Events API for an artist you specify and render the following information about each event to the terminal:
+ * This will search the Bands in Town Artist Events API for an artist/band you specify and render the following information about each event to the terminal:
    * Name of the venue
    * Venue location
    * Date of the Event (use moment to format this as "MM/DD/YYYY")
