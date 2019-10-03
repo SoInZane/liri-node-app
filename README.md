@@ -46,8 +46,10 @@
    * A preview link of the song from Spotify
    * The album that the song is from
 
+Note: If no song is specified in the command the results return the wildcard song "The Sign" by "Ace of Base".
+
  **$ node liri.js do-what-it-says**
- * This will look in the random.txt file for the song there and then use the Spotify API to return the same information as the spotify-this-song command
+ * This will look in the random.txt file for the song there and then use the Spotify API to return the same information as the spotify-this-song command.
 
  
 
