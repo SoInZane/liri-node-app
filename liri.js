@@ -84,7 +84,7 @@ if (command === "concert-this") {
         }
     });
 
-    // wildcard
+    // wildcard section of if's
 } else if (command === "do-what-it-says") {
 
     fs.readFile("random.txt", "utf8", function (error, data) {
@@ -140,7 +140,6 @@ if (command === "concert-this") {
                 console.log("Album: " + data.tracks.items[0].album.name);
                 console.log("-------------------------------------");
             });
-
 
             // If you want to know about a movie from the wildcard
         } else if (command === "movie-this") {
