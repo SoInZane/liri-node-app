@@ -29,8 +29,8 @@ if (command === "concert-this") {
             console.log("Date: " + moment(JSON.parse(body)[0].datetime).format("MM/DD/YYYY"));
             console.log("-------------------------------------");
 
-            var artistInfo = "\n-------------------------------------"  + "\n" + process.argv[3] + "\nVenue: " + JSON.parse(body)[0].venue.name + "\nLocation: " + JSON.parse(body)[0].venue.city + " " + JSON.parse(body)[0].venue.region + "\nDate: " + moment(JSON.parse(body)[0].datetime).format("MM/DD/YYYY") + "\n-------------------------------------";
-            fs.appendFile("log.txt", artistInfo, function(error){
+            var artistInfo = "\n-------------------------------------" + "\nArtist/Band: " + process.argv[3] + "\nVenue: " + JSON.parse(body)[0].venue.name + "\nLocation: " + JSON.parse(body)[0].venue.city + " " + JSON.parse(body)[0].venue.region + "\nDate: " + moment(JSON.parse(body)[0].datetime).format("MM/DD/YYYY") + "\n-------------------------------------";
+            fs.appendFile("log.txt", artistInfo, function (error) {
                 if (error) throw error;
             });
         }
@@ -42,7 +42,6 @@ if (command === "concert-this") {
 
     if (song === undefined) {
         song = "ace of base the sign";
-        
     }
 
     spotify.search({
@@ -62,7 +61,7 @@ if (command === "concert-this") {
         console.log("-------------------------------------");
 
         var songInfo = "\n------------------------------------- " + "\nArtist: " + data.tracks.items[0].artists[0].name + "\nSong Name: " + data.tracks.items[0].name + "\nPreview Link: " + data.tracks.items[0].preview_url + "\nAlbum: " + data.tracks.items[0].album.name + "\n-------------------------------------";
-        fs.appendFile("log.txt", songInfo, function(err){
+        fs.appendFile("log.txt", songInfo, function (err) {
             if (err) throw err;
         });
     });
@@ -92,10 +91,15 @@ if (command === "concert-this") {
             console.log("Plot: " + JSON.parse(body).Plot);
             console.log("Actors: " + JSON.parse(body).Actors);
             console.log("-------------------------------------");
+
+            var movieInfo = "\n-------------------------------------" + "\nTitle: " + JSON.parse(body).Title + "\nYear Released: " + JSON.parse(body).Year + "\nIMDB Rating: " + JSON.parse(body).imdbRating + "Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[0].Value + "\nCountry Produced: " + JSON.parse(body).Country + "Language: " + JSON.parse(body).Language + "Plot: " + JSON.parse(body).Plot + "Actors: " + JSON.parse(body).Actors + "\n-------------------------------------";
+            fs.appendFile("log.txt", movieInfo, function(error){
+                if (error) throw error;
+            });
         }
     });
 
-    // wildcard section of if's
+    // If you want to return the song from the random.txt file
 } else if (command === "do-what-it-says") {
 
     fs.readFile("random.txt", "utf8", function (error, data) {
@@ -111,24 +115,8 @@ if (command === "concert-this") {
         command = dataArr[0];
         whatToCommand = dataArr[1];
 
-        if (command === "concert-this") {
-
-            var artist = whatToCommand;
-
-            request("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp", function (error, response, body) {
-
-                if (!error && response.statusCode === 200) {
-                    console.log("-------------------------------------");
-                    console.log("Venue: " + JSON.parse(body)[0].venue.name);
-                    console.log("Location: " + JSON.parse(body)[0].venue.city + " " + JSON.parse(body)[0].venue.region);
-                    console.log("Date: " + moment(JSON.parse(body)[0].datetime).format("MM/DD/YYYY"));
-                    console.log("-------------------------------------");
-                }
-            });
-
-
-            // If you want to know about a song from the wildcard
-        } else if (command === "spotify-this-song") {
+        // If you want to know about a song from the wildcard
+        if (command === "spotify-this-song") {
             var song = whatToCommand;
 
             if (song === undefined) {
@@ -150,35 +138,12 @@ if (command === "concert-this") {
                 console.log("Preview Link: " + data.tracks.items[0].preview_url);
                 console.log("Album: " + data.tracks.items[0].album.name);
                 console.log("-------------------------------------");
+
+                var songInfo = "\n------------------------------------- " + "\nArtist: " + data.tracks.items[0].artists[0].name + "\nSong Name: " + data.tracks.items[0].name + "\nPreview Link: " + data.tracks.items[0].preview_url + "\nAlbum: " + data.tracks.items[0].album.name + "\n-------------------------------------";
+                fs.appendFile("log.txt", songInfo, function (err) {
+                    if (err) throw err;
+                });
             });
-
-            // If you want to know about a movie from the wildcard
-        } else if (command === "movie-this") {
-
-            var movie = whatToCommand;
-
-            if (movie === undefined) {
-                movie = "Mr. Nobody";
-            }
-
-            request("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy", function (error, response, body) {
-
-                if (!error && response.statusCode === 200) {
-
-                    // Movie info
-                    console.log("-------------------------------------");
-                    console.log("Title: " + JSON.parse(body).Title);
-                    console.log("Year Released: " + JSON.parse(body).Year);
-                    console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
-                    console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);
-                    console.log("Country Produced: " + JSON.parse(body).Country);
-                    console.log("Language: " + JSON.parse(body).Language);
-                    console.log("Plot: " + JSON.parse(body).Plot);
-                    console.log("Actors: " + JSON.parse(body).Actors);
-                    console.log("-------------------------------------");
-                }
-            });
-
 
             // If the Command is not entered or is incorrectly entered do the following:
         } else {
@@ -189,7 +154,6 @@ if (command === "concert-this") {
         console.log("Command: ", command);
         console.log("-------------------------------------");
     });
-
 
     // If the Command is not entered or is incorrectly entered do the following:
 } else {
