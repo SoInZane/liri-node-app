@@ -28,6 +28,11 @@ if (command === "concert-this") {
             console.log("Location: " + JSON.parse(body)[0].venue.city + " " + JSON.parse(body)[0].venue.region);
             console.log("Date: " + moment(JSON.parse(body)[0].datetime).format("MM/DD/YYYY"));
             console.log("-------------------------------------");
+
+            var artistInfo = "\n-------------------------------------"  + "\n" + process.argv[3] + "\nVenue: " + JSON.parse(body)[0].venue.name + "\nLocation: " + JSON.parse(body)[0].venue.city + " " + JSON.parse(body)[0].venue.region + "\nDate: " + moment(JSON.parse(body)[0].datetime).format("MM/DD/YYYY") + "\n-------------------------------------";
+            fs.appendFile("log.txt", artistInfo, function(error){
+                if (error) throw error;
+            });
         }
     });
 
@@ -37,6 +42,7 @@ if (command === "concert-this") {
 
     if (song === undefined) {
         song = "ace of base the sign";
+        
     }
 
     spotify.search({
@@ -54,6 +60,11 @@ if (command === "concert-this") {
         console.log("Preview Link: " + data.tracks.items[0].preview_url);
         console.log("Album: " + data.tracks.items[0].album.name);
         console.log("-------------------------------------");
+
+        var songInfo = "\n------------------------------------- " + "\nArtist: " + data.tracks.items[0].artists[0].name + "\nSong Name: " + data.tracks.items[0].name + "\nPreview Link: " + data.tracks.items[0].preview_url + "\nAlbum: " + data.tracks.items[0].album.name + "\n-------------------------------------";
+        fs.appendFile("log.txt", songInfo, function(err){
+            if (err) throw err;
+        });
     });
 
 
@@ -169,7 +180,7 @@ if (command === "concert-this") {
             });
 
 
-            // If the Command is not entered or incorrectly entered do the following:
+            // If the Command is not entered or is incorrectly entered do the following:
         } else {
             console.log("Command Error");
         }
@@ -180,7 +191,7 @@ if (command === "concert-this") {
     });
 
 
-    // If the Command not entered or incorrectly entered do the following:
+    // If the Command is not entered or is incorrectly entered do the following:
 } else {
     console.log("Command Error");
 }
